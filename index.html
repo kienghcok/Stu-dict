@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>學生字典-字音查詢</title>
+<link href="https://fonts.geekzu.org/css2?family=Noto+Serif+KR:wght@500;700&family=Noto+Serif+JP:wght@500;700&family=Noto+Serif+SC:wght@500;700&family=Noto+Sans+KR:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app-container">
+    <header class="sticky-top">
+        <input type="text" id="searchInput" placeholder="輸入單字查詢...">
+        <div class="dropdown">
+            <button class="btn-settings" id="btnSettings">⚙️</button>
+            <div id="dropdownMenu" class="dropdown-menu">
+                <div class="menu-item" onclick="openSettings()">音韻推導設置</div>
+                <div class="menu-item border-top" onclick="location.reload()">重新整理</div>
+            </div>
+        </div>
+    </header>
+
+    <div id="results"></div>
+</div>
+
+<div id="modalOverlay" class="modal-overlay">
+    <div class="modal">
+        <h3>音韻推導設置</h3>
+        
+        <div class="opt-group">
+            <span class="opt-title">顯示方案</span>
+            <label><input type="radio" name="displayMode" value="status"> 原始地位</label>
+            <label><input type="radio" name="displayMode" value="bopomofo" checked> 推導拼讀</label>
+            <label><input type="radio" name="displayMode" value="orig"> 原書讀音</label>
+        </div>
+        
+        <div id="derivationOptions">
+            <div class="opt-group">
+                <span class="opt-title">注音方案</span>
+                <label><input type="radio" name="phoneticScheme" value="zhuyin"> 注音符號</label>
+                <label><input type="radio" name="phoneticScheme" value="roma" checked> 漢語拼音</label>
+                <label><input type="radio" name="phoneticScheme" value="ipa"> 國際音標</label>
+            </div>
+
+            <div class="opt-group">
+                <span class="opt-title">聲母演變</span>
+                <label><input type="checkbox" class="opt" data-key="dropVng" checked> 疑微脱落</label>
+                <label><input type="checkbox" class="opt" data-key="palatalization" checked> 見系顎化</label>
+                <label><input type="checkbox" class="opt" data-key="dropFw" checked> 脣音不合</label>
+                <label><input type="checkbox" class="opt" data-key="riToEr" checked> 日母兒化</label>
+            </div>
+
+            <div class="opt-group">
+                <span class="opt-title">韻母演變</span>
+                <label><input type="checkbox" class="opt" data-key="zhuangSan" checked> 莊三化二</label>
+                <label><input type="checkbox" class="opt" data-key="qiToI" checked> 齊韻歸支</label>
+                <label><input type="checkbox" class="opt" data-key="mergeDongGeng" checked> 東庚合併</label> 
+                <label><input type="checkbox" class="opt" data-key="mergeRuRime" checked> 入聲韻合併</label>
+                <label><input type="checkbox" class="opt" data-key="simplifyShan" checked> 寒删合併</label>
+                <label><input type="checkbox" class="opt" data-key="mergeHamShan" checked> 咸攝入山</label>
+            </div>
+
+            <div class="opt-group">
+                <span class="opt-title">聲調模式</span>
+                <label><input type="radio" name="toneMode" value="8"> 八調</label>
+                <label><input type="radio" name="toneMode" value="7"> 七調</label>
+                <label><input type="radio" name="toneMode" value="6"> 六調</label>
+                <label><input type="radio" name="toneMode" value="5" checked> 五調</label>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeSettings()">取消</button>
+            <button class="btn-save" onclick="saveAndSearch()">應用並儲存</button>
+        </div>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

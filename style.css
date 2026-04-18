@@ -1,0 +1,115 @@
+:root { 
+    --bg-outer: #EBE8E0; 
+    --bg-inner: #F9F8F4; 
+    --bg-pron: #F2F0E9; 
+    --text-main: #3E3A37; 
+    --text-dark: #1F1B18; 
+    --accent: #A8383B; 
+    --border: #e7e5e4;
+}
+
+body { 
+    font-family: 'Noto Serif KR', 'Noto Serif JP', 'Noto Serif SC', serif;
+    background-color: var(--bg-outer); 
+    color: var(--text-main); 
+    margin: 0; 
+    display: flex; 
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    background-color: var(--bg-inner);
+    width: 100%;
+    max-width: 500px;
+    min-height: 100vh;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+}
+
+/* 頂部搜尋列 */
+.sticky-top { 
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(249, 248, 244, 0.95); 
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--border); 
+    padding: 12px 20px; 
+    display: flex; align-items: center; gap: 15px;
+}
+
+input[type="text"] { 
+    flex: 1; border: none; background: transparent; 
+    font-size: 1.1rem; outline: none; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
+}
+
+.btn-settings { background: transparent; border: none; cursor: pointer; font-size: 1.2rem; color: #a8a29e; }
+
+/* 字頭與浮水印 */
+.char-header { position: relative; padding: 40px 24px; border-bottom: 1px solid var(--border); overflow: hidden; }
+.watermark { position: absolute; top: 5px; right: 20px; font-size: 8rem; opacity: 0.08; line-height: 1; pointer-events: none; }
+.header-content { display: flex; align-items: flex-start; gap: 24px; position: relative; z-index: 1; }
+.char-large { font-size: 6rem; line-height: 1; font-weight: 900; color: var(--text-dark); margin: 0; }
+.char-info { display: flex; flex-direction: column; gap: 10px; margin-top: 10px; }
+.radical-badge { background: var(--accent); color: white; font-size: 10px; padding: 2px 6px; border-radius: 2px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 12px; color: #78716c; font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif; }
+.divider { height: 1px; background: #e5e5e5; width: 100%; margin: 5px 0; }
+
+/* 讀音與釋義區塊 */
+.pronunciation-bar {
+    background-color: var(--bg-pron); padding: 15px 20px; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 15px;
+}
+.pron-left { display: flex; align-items: center; }
+.pron-main { font-size: 1.6rem; font-weight: 700; color: var(--accent); font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif; }
+.pron-sub { font-size: 0.9rem; color: #78716c; display: flex; align-items: center; flex-wrap: wrap; }
+.vert-divider { height: 24px; width: 1px; background: #d6d3d1; margin: 0 5px; }
+
+.definition-section { padding: 30px 20px; }
+.def-row { display: flex; gap: 16px; margin-bottom: 25px; }
+.def-index {
+    width: 24px; height: 24px; flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; border: 1px solid #d6d3d1; font-size: 12px; color: #78716c; background: #fff;
+}
+.def-text { font-size: 17px; line-height: 1.8; }
+.def-core { font-weight: 700; color: #1a1a1a; }
+.word-pill { background: #f5f5f4; border: 1px solid #e7e5e4; padding: 0 4px; border-radius: 3px; font-size: 0.9em; color: #57534e; }
+
+/* 標籤樣式統一 */
+.tag-badge {
+    display: inline-block; background-color: #e7e5e4; color: #57534e; font-size: 14px;
+    padding: 2px 6px; border-radius: 4px; margin: 0 4px 0 8px; vertical-align: middle;
+}
+.variant-tag-group { display: flex; align-items: center; }
+.tag-text { font-size: 14px; }
+.tag-text-alt { font-size: 15px; color: #a8a29e; }
+
+/* 彈窗與設定面板 */
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display: none; justify-content: center; align-items: center; z-index: 1000; }
+.modal {
+    background: var(--bg-inner); padding: 32px; border-radius: 16px; width: 90%; max-width: 400px;
+    font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif; border: 1px solid var(--border); box-shadow: 0 20px 40px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+}
+.modal h3 { margin: 0 0 24px 0; font-size: 1.2rem; color: var(--text-dark); font-weight: 700; text-align: center; letter-spacing: 2px; }
+
+.dropdown-menu { position: absolute; right: 20px; top: 50px; background: white; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border-radius: 8px; display: none; min-width: 150px; z-index: 100; font-size: 0.9rem; }
+.menu-item { padding: 12px 16px; cursor: pointer; }
+.menu-item:hover { background: #f5f5f5; }
+.border-top { border-top: 1px solid var(--border); }
+
+.opt-group { margin-bottom: 22px; }
+.opt-title { display: block; font-size: 0.8rem; color: #a8a29e; margin-bottom: 10px; font-weight: 500; }
+.opt-group label input { appearance: none; position: absolute; width: 0; height: 0; opacity: 0; }
+.opt-group label {
+    display: inline-flex; align-items: center; padding: 6px 14px; margin: 0 8px 8px 0;
+    background: #f5f5f4; border: 1px solid transparent; border-radius: 20px; color: #78716c; font-size: 0.85rem;
+    cursor: pointer; transition: all 0.15s ease; user-select: none;
+}
+.opt-group label:hover { background: #e7e5e4; color: var(--text-main); }
+.opt-group label:has(input:checked) { background: rgba(168, 56, 59, 0.08); border-color: rgba(168, 56, 59, 0.2); color: var(--accent); font-weight: 500; }
+
+.modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+.modal-actions button { padding: 8px 16px; border-radius: 8px; font-weight: 500; cursor: pointer; border: none; }
+.btn-cancel { background: transparent; border: 1px solid #d6d3d1 !important; color: #57534e; transition: background-color 0.2s; }
+.btn-cancel:hover { background: #f5f5f4; }
+.btn-save { background: var(--accent); color: white; box-shadow: 0 4px 12px rgba(168, 56, 59, 0.2); transition: transform 0.2s, box-shadow 0.2s; }
+.btn-save:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(168, 56, 59, 0.3); }
