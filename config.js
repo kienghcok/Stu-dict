@@ -218,7 +218,7 @@ if (opts.simplifyShan) {
     }
 
 // --- 聲調處理與動態合併邏輯 (修正版) ---
-    const voiceless = "幫滂非敷端透精清心照穿審見谿曉影";
+    const voiceless = "幫滂非敷端透知徹精清心照穿審見谿曉影";
     const quanZhuo = "並奉定澄從羣牀邪禪匣"; // 明確定義全濁聲母
     const isVoiceless = voiceless.includes(init);
     const isQuanZhuo = quanZhuo.includes(init);
